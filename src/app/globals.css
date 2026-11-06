@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fbf9f5;
+  --foreground: #233d2c;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+}
+
+/* Custom gardening subtle patterns & animations */
+.bg-botanical-dots {
+  background-image: radial-gradient(#3d724d18 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.plant-card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(42, 73, 52, 0.08), 0 2px 6px -1px rgba(99, 63, 47, 0.04);
+}
+
+.plant-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.plant-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -4px rgba(42, 73, 52, 0.12), 0 4px 12px -2px rgba(99, 63, 47, 0.06);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4ede0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9fc6ab;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71a882;
+}
+
