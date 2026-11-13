@@ -10,19 +10,23 @@
 
 - **Exactly One Webpage**: Built using Next.js App Router (`src/app/page.tsx`) with zero separate sub-pages.
 - **Exactly One Smart Contract**: `PlantLog.sol` stores all plant registrations, watering histories, and growth milestones directly on the blockchain.
-- **No Backend / No Database**: All state is retrieved directly from Botchain Testnet via RPC and wagmi/viem.
+- **No Backend / No Database**: All state is retrieved directly from Botchain Mainnet via RPC and wagmi/viem.
 - **No Tokens / No NFTs**: Pure, clean on-chain data tracking without tokenomics or NFT clutter.
 - **Gardening-Inspired Interface**: Tailored natural color palette featuring deep botanical greens, warm creams, soft whites, and earthy terracotta browns with subtle foliage motifs.
+- **Ecosystem Integration**: Displays BOT Chain logo and direct links to both the BOT Chain Website and Explorer.
 
 ---
 
-## 🌐 Network Information: Botchain Testnet
+## 🌐 Network Information: Botchain Mainnet
 
-- **Network Name**: Botchain Testnet
-- **Chain ID**: `968`
-- **RPC Endpoint**: [https://rpc.bohr.life](https://rpc.bohr.life)
+- **Network Name**: Botchain Mainnet
+- **Chain ID**: `677`
+- **RPC Endpoint**: [https://rpc.botchain.ai](https://rpc.botchain.ai)
 - **Currency Symbol**: `BOT`
-- **Block Explorer**: [https://scan.bohr.life](https://scan.bohr.life)
+- **Total Supply**: 150 Million BOT
+- **Official Website**: [https://botchain.ai](https://botchain.ai)
+- **Block Explorer**: [https://scan.botchain.ai](https://scan.botchain.ai)
+- **Verified Contract**: [`0xd366385F4d44E1250CCAF37566b690E996849769`](https://scan.botchain.ai/address/0xd366385F4d44E1250CCAF37566b690E996849769#code)
 
 ---
 
@@ -53,7 +57,7 @@ The single smart contract implements:
 
 ### 1. Prerequisites
 - **Node.js** v18+ (tested up to v25)
-- **MetaMask** browser extension configured with Botchain Testnet (Chain ID 968)
+- **MetaMask** browser extension configured with Botchain Mainnet (Chain ID 677)
 
 ### 2. Installation
 ```bash
@@ -65,12 +69,12 @@ Copy `.env.example` to `.env`:
 ```bash
 cp .env.example .env
 ```
-Fill in your deployer private key (for contract deployment) and the deployed contract address:
+Settings:
 ```env
-BOTCHAIN_RPC_URL=https://rpc.bohr.life
-NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.bohr.life
+BOTCHAIN_MAINNET_RPC_URL=https://rpc.botchain.ai
+NEXT_PUBLIC_BOTCHAIN_RPC_URL=https://rpc.botchain.ai
 PRIVATE_KEY=your_private_key_here
-NEXT_PUBLIC_PLANTLOG_CONTRACT_ADDRESS=0x3Aa5ebB10DC797CAC828524e59A333d0A371443c
+NEXT_PUBLIC_PLANTLOG_CONTRACT_ADDRESS=0xd366385F4d44E1250CCAF37566b690E996849769
 ```
 
 ---
@@ -81,34 +85,21 @@ Run the comprehensive Hardhat test suite (15 unit tests covering registration, a
 
 ```bash
 npm test
-# or: npx hardhat test
 ```
-
-Test coverage includes:
-- ✅ Successful registration with valid name & species
-- ✅ Rejection of empty name/species
-- ✅ Incremental plant ID and global counter tracking
-- ✅ Owner logging watering with volume & notes
-- ✅ Owner recording growth with height & notes
-- ✅ Emission of `PlantRegistered`, `PlantWatered`, `GrowthRecorded`, and `PlantRemoved`
-- ✅ Unauthorized write attempts reverted with `"PlantLog: Not plant owner"`
-- ✅ Removing plants from active tracking and rejecting writes to archived plants
-- ✅ Retrieval of user plants, active plants, and global stats
 
 ---
 
-## 🛠️ Deploying to Botchain Testnet
+## 🛠️ Deploying to Botchain Mainnet
 
 Compile contracts:
 ```bash
 npm run compile
 ```
 
-Deploy to Botchain Testnet (Chain ID 968):
+Deploy to Botchain Mainnet (Chain ID 677):
 ```bash
-npm run deploy:botchain
+npm run deploy
 ```
-The deployment script will automatically print the deployed contract address and save it to `src/lib/contractAddress.json` for the frontend.
 
 ---
 
@@ -130,8 +121,8 @@ npm start
 
 ## 🌿 User Interface Walkthrough
 
-1. **Navigation**: Displays PlantLog branding, current network badge (Botchain 968), and one-click MetaMask connect/disconnect button.
-2. **Hero Headline**: *"A Little Care Goes a Long Way."* with instant action buttons to register a plant or view the contract on Botchain Explorer.
+1. **Navigation**: Displays PlantLog branding, current network badge (Botchain Mainnet 677), and one-click MetaMask connect/disconnect button.
+2. **Hero Headline**: *"A Little Care Goes a Long Way."* with instant action buttons to register a plant or view the verified contract on Botchain Explorer.
 3. **Live Stats Counters**: Total plants registered, total watering records, growth milestones, and user's active garden count.
 4. **My Plants Collection**:
    - Filter between **Active** and **All (including archived)** plants.
@@ -142,5 +133,8 @@ npm start
    - **Record Growth Modal**: Enter measured height (cm) and progress notes.
    - **Plant Details & Activity History**: Chronological timeline displaying all past waterings, growth notes, and timestamps.
    - **Archive Confirmation Modal**: Safely deactivate a plant from active care.
-6. **Live Blockchain Feedback**: Real-time transaction confirmation notifications with direct links to the Botchain Block Explorer (`https://scan.bohr.life/tx/...`).
-
+6. **BOT Chain Ecosystem & Footer**:
+   - Direct link to **BOT Chain Website**: [https://botchain.ai](https://botchain.ai)
+   - Direct link to **BOT Chain Explorer**: [https://scan.botchain.ai](https://scan.botchain.ai)
+   - Direct link to **Verified Contract**: [`0xd366385F4d44E1250CCAF37566b690E996849769`](https://scan.botchain.ai/address/0xd366385F4d44E1250CCAF37566b690E996849769#code)
+   - Real-time transaction confirmation notifications with direct links to the Botchain Block Explorer (`https://scan.botchain.ai/tx/...`).

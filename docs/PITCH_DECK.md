@@ -1,7 +1,7 @@
 # 🌿 PlantLog: Pitch Deck
 **Grow Something. Track Every Step.**
 
-A decentralized, tokenless Web3 botanical care tracker built on the Botchain Testnet.
+A decentralized, tokenless Web3 botanical care tracker built on Botchain Mainnet.
 
 ---
 
@@ -12,7 +12,8 @@ A decentralized, tokenless Web3 botanical care tracker built on the Botchain Tes
 * **Live Deployment:** Botchain Mainnet (`Chain ID: 677`)
 * **Contract:** `0xd366385F4d44E1250CCAF37566b690E996849769` (Verified)
 * **RPC:** `https://rpc.botchain.ai`
-* **Explorer:** `https://scan.botchain.ai`
+* **Website:** [https://botchain.ai](https://botchain.ai)
+* **Explorer:** [https://scan.botchain.ai](https://scan.botchain.ai)
 
 ---
 
@@ -47,8 +48,8 @@ A decentralized, tokenless Web3 botanical care tracker built on the Botchain Tes
 * **Frontend:** Next.js 14 App Router, TypeScript, Tailwind CSS.
 * **Web3 Integration:** wagmi v2, viem, MetaMask connector.
 * **Smart Contract:** Single Solidity (`0.8.20`) contract (`PlantLog.sol`), gas-optimized with Paris EVM target.
-* **Testing & Verification:** 15/15 Hardhat unit tests passing; 100% verified source code on Bohr Scan block explorer.
-* **Network:** Botchain Testnet (Chain ID 968, RPC: `https://rpc.bohr.life`).
+* **Testing & Verification:** 15/15 Hardhat unit tests passing; 100% verified source code on Botchain Mainnet block explorer.
+* **Network:** Botchain Mainnet (Chain ID 677, RPC: `https://rpc.botchain.ai`).
 
 ---
 
@@ -72,9 +73,10 @@ A decentralized, tokenless Web3 botanical care tracker built on the Botchain Tes
 
 ## 📌 Slide 8: Roadmap & Milestones
 * **Q4 2026 (Completed):**
-  - Contract deployed & verified on Botchain Testnet (`0xDcc7...BE9a`).
+  - Contract deployed & verified on Botchain Mainnet (`0xd366...9769`).
   - Single-page dApp built and production-tested.
   - Comprehensive 15-test test suite passing.
+  - Ecosystem links integrated for `botchain.ai` & `scan.botchain.ai`.
   - Public repository committed to GitHub.
 * **Q1 2027:**
   - Printable QR code generator for physical plant pots linked to on-chain profile.
@@ -86,7 +88,8 @@ A decentralized, tokenless Web3 botanical care tracker built on the Botchain Tes
 ---
 
 ## 📌 Slide 9: Summary & Contact
-* **GitHub Repository:** [https://github.com/liljhnxn/Plantlog.git](https://github.com/liljhnxn/Plantlog.git)
+* **BOT Chain Website:** [https://botchain.ai](https://botchain.ai)
+* **BOT Chain Explorer:** [https://scan.botchain.ai](https://scan.botchain.ai)
 * **Contract on Explorer:** [https://scan.botchain.ai/address/0xd366385F4d44E1250CCAF37566b690E996849769#code](https://scan.botchain.ai/address/0xd366385F4d44E1250CCAF37566b690E996849769#code)
+* **GitHub Repository:** [https://github.com/liljhnxn/Plantlog.git](https://github.com/liljhnxn/Plantlog.git)
 * **Tagline:** *"Grow Something. Track Every Step."*
-

@@ -4,8 +4,8 @@ import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "PlantLog | Grow Something. Track Every Step.",
-  description: "A decentralized, on-chain plant care and growth log powered by the Botchain Testnet.",
-  keywords: ["PlantLog", "Web3", "Solidity", "Plant Tracker", "Botanical Care", "Botchain"],
+  description: "A decentralized, on-chain plant care and growth log powered by Botchain Mainnet.",
+  keywords: ["PlantLog", "Web3", "Solidity", "Plant Tracker", "Botanical Care", "Botchain", "BOT Chain"],
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",

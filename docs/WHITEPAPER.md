@@ -2,8 +2,10 @@
 ### Technical Whitepaper v1.0
 **Tagline:** *"Grow Something. Track Every Step."*  
 **Date:** November 2026  
-**Network:** Botchain Mainnet (Chain ID: 677) | Botchain Testnet (Chain ID: 968)  
-**Mainnet Contract:** `0xd366385F4d44E1250CCAF37566b690E996849769`  
+**Network:** Botchain Mainnet (Chain ID: 677)  
+**Contract Address:** `0xd366385F4d44E1250CCAF37566b690E996849769`  
+**Official Website:** [https://botchain.ai](https://botchain.ai)  
+**Explorer:** [https://scan.botchain.ai](https://scan.botchain.ai)  
 
 ---
 
@@ -36,8 +38,8 @@ PlantLog provides a minimal, self-sustaining protocol governed by three core des
                                |
                                v
 +-------------------------------------------------------------+
-|                   Botchain Testnet (ID 968)                  |
-|                 RPC: https://rpc.bohr.life                   |
+|                   Botchain Mainnet (ID 677)                  |
+|                 RPC: https://rpc.botchain.ai                |
 +-------------------------------------------------------------+
                                |
                                v
@@ -51,7 +53,7 @@ PlantLog provides a minimal, self-sustaining protocol governed by three core des
 
 ## 4. Smart Contract Architecture (`PlantLog.sol`)
 
-The protocol is implemented as a single, gas-optimized Solidity smart contract (`0.8.20`) deployed at `0xDcc711256542E56B9c0BeF58A9808AB4e33BBE9a`.
+The protocol is implemented as a single, gas-optimized Solidity smart contract (`0.8.20`) deployed at `0xd366385F4d44E1250CCAF37566b690E996849769`.
 
 ### 4.1 Data Structures
 ```solidity
@@ -101,7 +103,8 @@ struct Plant {
 ## 5. Frontend & User Experience
 * **Framework:** Next.js 14 App Router, React 18, TypeScript, Tailwind CSS.
 * **Palette:** Natural botanical greens (`#233d2c`, `#3d724d`), warm creams (`#faf7f0`), soft whites, and earthy terracotta (`#ad7d57`).
-* **Wallet Integration:** Automatic Botchain Testnet detection, chain switching to ID 968, and transaction hash monitoring with Bohr Scan links.
+* **Wallet Integration:** Automatic Botchain Mainnet detection, chain switching to ID 677, and transaction hash monitoring with Botchain Explorer links.
+* **Ecosystem Footer:** Prominently links to BOT Chain Website (`https://botchain.ai`) and Explorer (`https://scan.botchain.ai`).
 * **Responsive Modals:** Accessible dialogs for plant registration, hydration logging, height milestones, and archival confirmation.
 
 ---
@@ -115,7 +118,7 @@ struct Plant {
 ---
 
 ## 7. Roadmap
-- **Phase 1 (Completed):** Core contract development, 15 unit tests, Botchain Testnet deployment, contract verification, responsive single-page dApp.
+- **Phase 1 (Completed):** Core contract development, 15 unit tests, Botchain Mainnet deployment, contract verification, responsive single-page dApp.
 - **Phase 2:** PWA (Progressive Web App) offline caching for offline notes preview, QR code generator per plant ID for physical pot labeling.
 - **Phase 3:** Multi-chain deployments on eco-friendly, low-gas Layer 2 networks.
 - **Phase 4:** Open botanical taxonomy registry integration and community care guides.
@@ -123,5 +126,4 @@ struct Plant {
 ---
 
 ## 8. Conclusion
-PlantLog demonstrates that blockchain technology excels at simple, durable, verifiable data logging without the baggage of speculative tokens or heavy backend infrastructure. By uniting an elegant gardening design with immutable smart contracts, PlantLog provides gardeners with an unshakeable digital companion for their living plants.
-
+PlantLog demonstrates that blockchain technology excels at simple, durable, verifiable data logging without the baggage of speculative tokens or heavy backend infrastructure. By uniting an elegant gardening design with immutable smart contracts on Botchain Mainnet, PlantLog provides gardeners with an unshakeable digital companion for their living plants.
