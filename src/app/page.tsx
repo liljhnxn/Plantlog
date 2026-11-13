@@ -35,6 +35,8 @@ import {
   ChevronRight,
   Sparkles,
   BookOpen,
+  Copy,
+  Check,
 } from "lucide-react";
 
 export default function PlantLogApp() {
@@ -63,6 +65,15 @@ export default function PlantLogApp() {
 
   // Filter state: "active" | "all"
   const [filterMode, setFilterMode] = useState<"active" | "all">("active");
+  const [copiedContract, setCopiedContract] = useState(false);
+
+  const handleCopyContract = () => {
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(PLANTLOG_CONTRACT_ADDRESS);
+      setCopiedContract(true);
+      setTimeout(() => setCopiedContract(false), 2000);
+    }
+  };
 
   // Contract write hook
   const {
@@ -307,7 +318,40 @@ export default function PlantLogApp() {
           </div>
 
           {/* Wallet and Network Controls */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            {/* Quick Links with BOT Chain Logo */}
+            <div className="hidden lg:flex items-center space-x-2 mr-1">
+              <a
+                href="https://botchain.ai"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-cream-100 text-nature-900 border border-nature-200/80 text-xs font-semibold transition-colors shadow-2xs"
+                title="BOT Chain Official Website"
+              >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
+                <span>botchain.ai</span>
+              </a>
+
+              <a
+                href="https://scan.botchain.ai"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-cream-100 text-nature-900 border border-nature-200/80 text-xs font-semibold transition-colors shadow-2xs"
+                title="BOT Chain Mainnet Explorer"
+              >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
+                <span>Explorer</span>
+              </a>
+            </div>
+
             {isConnected && isWrongNetwork && (
               <button
                 onClick={() => switchChain?.({ chainId: activeChain.id })}
@@ -463,14 +507,73 @@ export default function PlantLogApp() {
               )}
 
               <a
-                href={`${explorerBaseUrl}/address/${PLANTLOG_CONTRACT_ADDRESS}`}
+                href={`${explorerBaseUrl}/address/${PLANTLOG_CONTRACT_ADDRESS}#code`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center space-x-2 px-5 py-3.5 rounded-2xl bg-nature-800/80 hover:bg-nature-700/80 text-cream-100 font-medium text-sm border border-nature-600/50 transition-colors"
+                className="inline-flex items-center space-x-2 px-5 py-3.5 rounded-2xl bg-nature-800/90 hover:bg-nature-700 text-cream-100 font-semibold text-sm border border-nature-600/60 transition-colors shadow-sm"
               >
-                <span>Verified Contract</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
+                <span>Verified Mainnet Contract</span>
+                <ExternalLink className="w-3.5 h-3.5 text-nature-300" />
               </a>
+
+              <a
+                href="https://scan.botchain.ai"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center space-x-2 px-4 py-3.5 rounded-2xl bg-nature-800/60 hover:bg-nature-700/60 text-cream-100 font-medium text-sm border border-nature-600/40 transition-colors"
+              >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
+                <span>BOT Chain Explorer</span>
+                <ExternalLink className="w-3.5 h-3.5 text-nature-300" />
+              </a>
+
+              <a
+                href="https://botchain.ai"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center space-x-2 px-4 py-3.5 rounded-2xl bg-nature-800/60 hover:bg-nature-700/60 text-cream-100 font-medium text-sm border border-nature-600/40 transition-colors"
+              >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
+                <span>botchain.ai</span>
+                <ExternalLink className="w-3.5 h-3.5 text-nature-300" />
+              </a>
+            </div>
+
+            {/* Mainnet Contract Address Banner with Copy Button */}
+            <div className="pt-2 flex flex-wrap items-center gap-2 text-xs text-nature-200">
+              <span className="text-nature-300 font-medium">Mainnet Contract:</span>
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-nature-950/60 border border-nature-700/80 font-mono text-[11px] text-cream-100">
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-3.5 h-3.5 rounded-xs object-cover"
+                />
+                <span>{PLANTLOG_CONTRACT_ADDRESS}</span>
+                <button
+                  onClick={handleCopyContract}
+                  className="p-1 hover:text-emerald-400 transition-colors"
+                  title="Copy contract address"
+                >
+                  {copiedContract ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 text-stone-400 hover:text-cream-50" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -810,9 +913,11 @@ export default function PlantLogApp() {
           {/* Ecosystem Links Card */}
           <div className="rounded-3xl bg-white border border-nature-200/80 p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center space-x-4">
-              <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-nature-800 text-white flex items-center justify-center shadow-md shadow-nature-700/20 font-bold text-lg">
-                BOT
-              </div>
+              <img
+                src="/botchain-logo.png"
+                alt="BOT Chain Logo"
+                className="h-12 w-12 rounded-2xl object-cover shadow-md shadow-nature-700/20 border border-nature-200"
+              />
               <div>
                 <div className="flex items-center space-x-2">
                   <span className="font-serif font-bold text-base text-nature-950">
@@ -835,6 +940,11 @@ export default function PlantLogApp() {
                 rel="noreferrer"
                 className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-nature-50 hover:bg-nature-100 text-nature-900 border border-nature-200 font-semibold text-xs transition-colors shadow-2xs"
               >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
                 <span>BOT Chain Website</span>
                 <ExternalLink className="w-3.5 h-3.5 text-nature-600" />
               </a>
@@ -845,6 +955,11 @@ export default function PlantLogApp() {
                 rel="noreferrer"
                 className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-nature-700 hover:bg-nature-800 text-white font-semibold text-xs transition-colors shadow-sm"
               >
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
                 <span>BOT Chain Explorer</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
@@ -855,7 +970,12 @@ export default function PlantLogApp() {
                 rel="noreferrer"
                 className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-cream-100 hover:bg-cream-200 text-earth-900 border border-earth-200 font-semibold text-xs transition-colors"
               >
-                <span>Verified Contract</span>
+                <img
+                  src="/botchain-logo.png"
+                  alt="BOT Chain"
+                  className="w-4 h-4 rounded-sm object-cover"
+                />
+                <span>Mainnet Contract</span>
                 <ExternalLink className="w-3.5 h-3.5 text-earth-700" />
               </a>
             </div>

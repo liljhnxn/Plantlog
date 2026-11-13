@@ -1,11 +1,11 @@
 import { PLANTLOG_ABI } from "./contractAbi";
 import contractAddressConfig from "./contractAddress.json";
 
-// Default to deployed address or env variable or null address placeholder
+// Mainnet Contract Address for PlantLog (Chain ID: 677)
 export const PLANTLOG_CONTRACT_ADDRESS = (
   process.env.NEXT_PUBLIC_PLANTLOG_CONTRACT_ADDRESS ||
   (contractAddressConfig as { address?: string }).address ||
-  "0x0000000000000000000000000000000000000000"
+  "0xd366385F4d44E1250CCAF37566b690E996849769"
 ) as `0x${string}`;
 
 export const PLANTLOG_CONFIG = {
