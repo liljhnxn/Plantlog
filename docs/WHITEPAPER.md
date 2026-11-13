@@ -2,8 +2,8 @@
 ### Technical Whitepaper v1.0
 **Tagline:** *"Grow Something. Track Every Step."*  
 **Date:** November 2026  
-**Network:** Botchain Testnet (Chain ID: 968)  
-**Contract Address:** `0xDcc711256542E56B9c0BeF58A9808AB4e33BBE9a`  
+**Network:** Botchain Mainnet (Chain ID: 677) | Botchain Testnet (Chain ID: 968)  
+**Mainnet Contract:** `0xd366385F4d44E1250CCAF37566b690E996849769`  
 
 ---
 
@@ -124,3 +124,4 @@ struct Plant {
 
 ## 8. Conclusion
 PlantLog demonstrates that blockchain technology excels at simple, durable, verifiable data logging without the baggage of speculative tokens or heavy backend infrastructure. By uniting an elegant gardening design with immutable smart contracts, PlantLog provides gardeners with an unshakeable digital companion for their living plants.
+

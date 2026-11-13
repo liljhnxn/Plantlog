@@ -1,6 +1,8 @@
 {
-  "address": "0xDcc711256542E56B9c0BeF58A9808AB4e33BBE9a",
-  "network": "botchain",
-  "chainId": 968,
-  "deployedAt": "2026-11-06T12:37:30.000Z"
+  "address": "0xd366385F4d44E1250CCAF37566b690E996849769",
+  "network": "botchainMainnet",
+  "chainId": 677,
+  "deployedAt": "2026-11-13T11:54:39.335Z",
+  "gasUsed": "1662323",
+  "actualFeeBot": "0.03324646"
 }

@@ -4,8 +4,12 @@ import * as fs from "fs";
 import * as path from "path";
 
 async function main() {
+  const network = hre.network.name;
+  const currentNetwork = await ethers.provider.getNetwork();
+  const chainId = Number(currentNetwork.chainId);
+
   console.log("-----------------------------------------------");
-  console.log("🌱 Deploying PlantLog Smart Contract...");
+  console.log(`🌱 Deploying PlantLog Smart Contract to ${network} (Chain ID: ${chainId})...`);
   console.log("-----------------------------------------------");
 
   const [deployer] = await ethers.getSigners();
@@ -14,20 +18,46 @@ async function main() {
   const balance = await ethers.provider.getBalance(deployer.address);
   console.log("Deployer balance:", ethers.formatEther(balance), "native tokens");
 
-  const PlantLogFactory = await ethers.getContractFactory("PlantLog");
-  const plantLog = await PlantLogFactory.deploy();
+  // Get network fee data to ensure minimum safe gas price
+  const feeData = await ethers.provider.getFeeData();
+  const gasPrice = feeData.gasPrice || ethers.parseUnits("20", "gwei");
+  console.log("Using gas price:", ethers.formatUnits(gasPrice, "gwei"), "gwei (optimized for minimal fee)");
 
+  const PlantLogFactory = await ethers.getContractFactory("PlantLog");
+  
+  // Estimate gas
+  const deployTx = await PlantLogFactory.getDeployTransaction();
+  const estimatedGas = await ethers.provider.estimateGas(deployTx);
+  console.log("Estimated deployment gas units:", estimatedGas.toString());
+  const estimatedCost = estimatedGas * gasPrice;
+  console.log("Estimated deployment fee:", ethers.formatEther(estimatedCost), "native tokens");
+
+  // Deploy with strict, minimal gas price
+  const plantLog = await PlantLogFactory.deploy({
+    gasPrice: gasPrice,
+  });
+
+  console.log("Transaction submitted, waiting for confirmation...");
   await plantLog.waitForDeployment();
 
   const contractAddress = await plantLog.getAddress();
-  console.log("✅ PlantLog deployed successfully to:", contractAddress);
+  const receipt = await plantLog.deploymentTransaction()?.wait();
+  const gasUsed = receipt?.gasUsed || estimatedGas;
+  const actualFee = gasUsed * gasPrice;
+
+  console.log("✅ PlantLog deployed successfully!");
+  console.log("Contract Address:", contractAddress);
+  console.log("Actual gas used:", gasUsed.toString());
+  console.log("Total gas fee spent:", ethers.formatEther(actualFee), "BOT");
 
   // Save the deployed address to a shared config file for the Next.js frontend
   const deployedConfig = {
     address: contractAddress,
-    network: "botchain",
-    chainId: 968,
+    network: network,
+    chainId: chainId,
     deployedAt: new Date().toISOString(),
+    gasUsed: gasUsed.toString(),
+    actualFeeBot: ethers.formatEther(actualFee),
   };
 
   const outputDir = path.join(process.cwd(), "src/lib");

@@ -10,7 +10,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import { botchainTestnet } from "@/lib/chains";
+import { activeChain, botchainMainnet, botchainTestnet } from "@/lib/chains";
 import {
   PLANTLOG_CONFIG,
   PLANTLOG_CONTRACT_ADDRESS,
@@ -174,7 +174,8 @@ export default function PlantLogApp() {
     setGrowthNotes("");
   };
 
-  const isWrongNetwork = isConnected && chain?.id !== botchainTestnet.id;
+  const isWrongNetwork = isConnected && Number(chain?.id) !== Number(activeChain.id);
+  const explorerBaseUrl = chain?.blockExplorers?.default?.url || activeChain.blockExplorers.default.url;
 
   // Format plants
   const userPlants: PlantData[] = useMemo(() => {
@@ -296,7 +297,7 @@ export default function PlantLogApp() {
                   PlantLog
                 </span>
                 <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-nature-100 text-nature-800 border border-nature-200">
-                  Botchain 968
+                  {chain?.name || activeChain.name}
                 </span>
               </div>
               <p className="text-xs text-earth-700 font-medium tracking-wide">
@@ -309,11 +310,11 @@ export default function PlantLogApp() {
           <div className="flex items-center space-x-3">
             {isConnected && isWrongNetwork && (
               <button
-                onClick={() => switchChain?.({ chainId: botchainTestnet.id })}
+                onClick={() => switchChain?.({ chainId: activeChain.id })}
                 className="hidden md:inline-flex items-center space-x-1.5 px-3 py-1.5 bg-amber-500/15 text-amber-900 border border-amber-300 rounded-xl text-xs font-semibold hover:bg-amber-500/25 transition-colors animate-pulse"
               >
                 <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-                <span>Switch to Botchain</span>
+                <span>Switch to Mainnet</span>
               </button>
             )}
 
@@ -385,12 +386,12 @@ export default function PlantLogApp() {
                 </p>
                 {(txHash || notification?.txHash) && (
                   <a
-                    href={`https://scan.bohr.life/tx/${txHash || notification?.txHash}`}
+                    href={`${explorerBaseUrl}/tx/${txHash || notification?.txHash}`}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center space-x-1 text-xs underline font-medium hover:opacity-80"
                   >
-                    <span>View on Botchain Explorer</span>
+                    <span>View on Explorer</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
@@ -462,7 +463,7 @@ export default function PlantLogApp() {
               )}
 
               <a
-                href={`https://scan.bohr.life/address/${PLANTLOG_CONTRACT_ADDRESS}`}
+                href={`${explorerBaseUrl}/address/${PLANTLOG_CONTRACT_ADDRESS}`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center space-x-2 px-5 py-3.5 rounded-2xl bg-nature-800/80 hover:bg-nature-700/80 text-cream-100 font-medium text-sm border border-nature-600/50 transition-colors"
@@ -814,10 +815,10 @@ export default function PlantLogApp() {
           </div>
 
           <div className="flex items-center space-x-4 text-stone-600">
-            <span>Botchain Testnet (ID 968)</span>
+            <span>{activeChain.name} (ID {activeChain.id})</span>
             <span>•</span>
             <a
-              href="https://scan.bohr.life"
+              href={activeChain.blockExplorers.default.url}
               target="_blank"
               rel="noreferrer"
               className="hover:underline flex items-center space-x-1"

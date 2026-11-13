@@ -9,8 +9,10 @@ A decentralized, tokenless Web3 botanical care tracker built on the Botchain Tes
 * **Product Name:** PlantLog
 * **Tagline:** *"Grow Something. Track Every Step."*
 * **Mission:** Bringing immutable, permanent lifecycle records to plant lovers and urban gardeners worldwide.
-* **Live Deployment:** Botchain Testnet (`Chain ID: 968`)
-* **Contract:** `0xDcc711256542E56B9c0BeF58A9808AB4e33BBE9a` (Verified)
+* **Live Deployment:** Botchain Mainnet (`Chain ID: 677`)
+* **Contract:** `0xd366385F4d44E1250CCAF37566b690E996849769` (Verified)
+* **RPC:** `https://rpc.botchain.ai`
+* **Explorer:** `https://scan.botchain.ai`
 
 ---
 
@@ -85,5 +87,6 @@ A decentralized, tokenless Web3 botanical care tracker built on the Botchain Tes
 
 ## 📌 Slide 9: Summary & Contact
 * **GitHub Repository:** [https://github.com/liljhnxn/Plantlog.git](https://github.com/liljhnxn/Plantlog.git)
-* **Contract on Explorer:** [https://scan.bohr.life/address/0xDcc711256542E56B9c0BeF58A9808AB4e33BBE9a#code](https://scan.bohr.life/address/0xDcc711256542E56B9c0BeF58A9808AB4e33BBE9a#code)
+* **Contract on Explorer:** [https://scan.botchain.ai/address/0xd366385F4d44E1250CCAF37566b690E996849769#code](https://scan.botchain.ai/address/0xd366385F4d44E1250CCAF37566b690E996849769#code)
 * **Tagline:** *"Grow Something. Track Every Step."*
+
